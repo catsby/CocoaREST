@@ -20,7 +20,23 @@
 
 @synthesize count;
 @synthesize page;
+@synthesize rpp;
 @synthesize text;
+@synthesize format;
+@synthesize q;
+@synthesize callback;
+@synthesize gcontext;
+@synthesize langpair;
+@synthesize key;
+@synthesize v;
+@synthesize ands;
+@synthesize phrase;
+@synthesize ors;
+@synthesize nots;
+@synthesize from;
+@synthesize to;
+@synthesize tude;
+@synthesize since_id;
 @synthesize olderThanStatusID;
 @synthesize newerThanStatusID;
 @synthesize inReplyToStatusID;
@@ -60,7 +76,10 @@
 }
 
 - (void) dealloc {
+	[q release], q = nil;
 	[text release], text = nil;
+	[format release], format = nil;
+	[since_id release], since_id = nil;
 	
 	[olderThanStatusID release], olderThanStatusID = nil;
 	[newerThanStatusID release], newerThanStatusID = nil;
@@ -96,7 +115,16 @@
 	
 	task.count = self.count;
 	task.page = self.page;
+	task.rpp = self.rpp;
 	task.text = self.text;
+	task.q = self.q;
+	task.callback = self.callback;
+	task.gcontext = self.gcontext;
+	task.langpair = self.langpair;
+	task.key = self.key;
+	task.v = self.v;
+	task.format = self.format;
+	task.since_id = self.since_id;
 	task.olderThanStatusID = self.olderThanStatusID;
 	task.newerThanStatusID = self.newerThanStatusID;
 	task.inReplyToStatusID = self.inReplyToStatusID;
@@ -231,6 +259,11 @@
 	URLStrings[SDTwitterTaskGetBlockedUsers] = @"http://twitter.com/blocks/blocking.json";
 	URLStrings[SDTwitterTaskGetBlockedUserIDs] = @"http://twitter.com/blocks/blocking/ids.json";
 	
+	URLStrings[SDTwitterTaskSearch] = @"http://search.twitter.com/search.json";
+	URLStrings[SDTwitterTaskTrends] = @"http://search.twitter.com/trends.json";
+	URLStrings[SDTwitterTaskGetRateLimitStatus] = @"http://twitter.com/account/rate_limit_status.json";
+	URLStrings[SDTwitterTaskGetUserInfoUsingYQL] = @"http://query.yahooapis.com/v1/public/yql";
+	
 	return URLStrings[type];
 }
 
@@ -254,8 +287,52 @@
 			[parameters setObject:text forKey:@"text"];
 	}
 	
+	if(q)
+		[parameters setObject:q forKey:@"q"];
+	
+	if(callback)
+		[parameters setObject:callback forKey:@"callback"];
+	if(gcontext)
+		[parameters setObject:gcontext forKey:@"context"];
+	if(langpair)
+		[parameters setObject:langpair forKey:@"langpair"];
+	if(key)
+		[parameters setObject:key forKey:@"key"];
+	if(v)
+		[parameters setObject:v forKey:@"v"];	
+	
+	if(ands)
+		[parameters setObject:ands forKey:@"ands"];
+
+	if(phrase)
+		[parameters setObject:phrase forKey:@"phrase"];
+
+	if(ors)
+		[parameters setObject:ors forKey:@"ors"];
+
+	if(nots)
+		[parameters setObject:nots forKey:@"nots"];
+
+	if(from)
+		[parameters setObject:from forKey:@"from"];
+
+	if(to)
+		[parameters setObject:to forKey:@"to"];
+
+	if(tude)
+		[parameters setObject:tude forKey:@"tude"];
+	
+	if(rpp)
+		[parameters setObject:[NSString stringWithFormat:@"%d", (rpp)] forKey:@"rpp"];
+
+	if(format)
+		[parameters setObject:format forKey:@"format"];
+
 	if (newerThanStatusID)
 		[parameters setObject:newerThanStatusID forKey:@"since_id"];
+	
+	if (since_id)
+		[parameters setObject:since_id forKey:@"since_id"];
 	
 	if (olderThanStatusID)
 		[parameters setObject:olderThanStatusID forKey:@"max_id"];

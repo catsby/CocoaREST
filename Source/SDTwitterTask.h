@@ -60,6 +60,11 @@ typedef enum _SDTwitterTaskType {
 	SDTwitterTaskGetBlockedUsers,
 	SDTwitterTaskGetBlockedUserIDs,
 	
+	SDTwitterTaskSearch,
+	SDTwitterTaskTrends,
+	SDTwitterTaskGetRateLimitStatus,
+	SDTwitterTaskGetUserInfoUsingYQL,
+
 	SDTwitterTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDTwitterTaskType;
 
@@ -75,9 +80,21 @@ typedef enum _SDTwitterDeviceType {
 	
 	int count;
 	int page;
+	int rpp;
 	
 	NSString *text;
 	
+	NSString *q;
+	NSString *ands;
+	NSString *phrase;
+	NSString *ors;
+	NSString *nots;
+	NSString *from;
+	NSString *to;
+	NSString *tude;
+	NSString *since_id;
+	NSString *format;
+
 	NSString *olderThanStatusID;
 	NSString *newerThanStatusID;
 	NSString *inReplyToStatusID;
@@ -115,8 +132,27 @@ typedef enum _SDTwitterDeviceType {
 
 @property int count;
 @property int page;
+@property int rpp;
 
 @property (copy) NSString *text;
+
+@property (copy) NSString *callback;
+@property (copy) NSString *gcontext;
+@property (copy) NSString *langpair;
+@property (copy) NSString *key;
+@property (copy) NSString *v;
+
+@property (copy) NSString *q;
+@property (copy) NSString *ands;
+@property (copy) NSString *phrase;
+@property (copy) NSString *ors;
+@property (copy) NSString *nots;
+@property (copy) NSString *from;
+@property (copy) NSString *to;
+@property (copy) NSString *tude;
+
+@property (copy) NSString *since_id;
+@property (copy) NSString *format;
 
 @property (copy) NSString *olderThanStatusID;
 @property (copy) NSString *newerThanStatusID;
