@@ -106,7 +106,7 @@ typedef enum _SDTwitterDeviceType {
 	SDTwitterDeviceType deviceType;
 	
 	BOOL shouldTileBackgroundImage;
-	NSImage *imageToUpload;
+	NSURL *imageToUpload;
 }
 
 - (id) copyWithNextPage;
@@ -146,6 +146,6 @@ typedef enum _SDTwitterDeviceType {
 @property SDTwitterDeviceType deviceType;
 
 @property BOOL shouldTileBackgroundImage;
-@property (copy) NSImage *imageToUpload;
+@property (copy) NSURL *imageToUpload;
 
 @end

@@ -65,5 +65,6 @@ typedef enum _SDParseFormat {
 - (NSData*) postBodyDataFromDictionary:(NSDictionary*)dictionary;
 + (NSString*) stringBoundary;
 - (NSString*) errorString;
+- (NSString*) mimeTypeForFilename:(NSString*)filename;
 
 @end

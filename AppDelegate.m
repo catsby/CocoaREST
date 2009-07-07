@@ -52,23 +52,31 @@
 }
 
 - (void) changeTwitterProfileImage:(NSString *)imagePath {
-	NSLog(@"New image path: %@", imagePath);
-	NSLog(@"New image size: %@K", [self getImageSize:imagePath]);
+	NSNumber *imageSize = [self getImageSize:imagePath];
 	
 	// Verify the image size is under the 700K limit
+	if ([imageSize isGreaterThan:[NSNumber numberWithInteger:700]]) {
+		NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+		NSString *errorMessage = [[[NSString alloc] initWithFormat:@"The maximum size for the image is 700K.  Yours is %@K.", imageSize] autorelease];
+		
+		[alert setMessageText:@"Error"];
+		[alert setInformativeText:errorMessage];
+		[alert runModal];
+	} else {
+		manager.successSelector = @selector(twitterManager:resultsReadyForChangeProfileImageTask:);
 	
-	// Change the profile image
+		SDTwitterTask *changeImageTask = [SDTwitterTask taskWithManager:manager];
+		
+		changeImageTask.type = SDTwitterTaskUpdateProfileImage;
 	
-/*	manager.successSelector = @selector(twitterManager:resultsReadyForChangeProfileImageTask:);
-	
-	SDTwitterTask *changeImageTask = [SDTwitterTask taskWithManager:manager];
-	changeImageTask.type = SDTwitterTaskUpdateProfileImage;
-	
-	NSImage *newImage = [[[NSImage alloc] initWithContentsOfFile:imagePath] autorelease];
+		NSURL *newImage = [[NSURL alloc] initFileURLWithPath:imagePath];
 
-	changeImageTask.imageToUpload = newImage;
+		changeImageTask.imageToUpload = newImage;
 	
-	[changeImageTask run]; */
+		[changeImageTask run];
+		
+		self.isWaiting = YES;
+	}
 }
 
 - (NSNumber *) getImageSize:(NSString *)imagePath {
@@ -106,6 +114,10 @@
 	[alert setMessageText:@"Error"];
 	[alert setInformativeText:[task.error localizedDescription]];
 	[alert runModal];
+}
+
+- (void) twitterManager:(SDTwitterTaskManager*)manager resultsReadyForChangeProfileImageTask:(SDTwitterTask*)task {
+	self.isWaiting = NO;
 }
 
 @end

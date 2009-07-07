@@ -103,7 +103,15 @@
 	NSError *connectionError = nil;
 	NSError *errorFromParser = nil;
 	
+	// NSLog(@"Request URL: %@", [request URL]);
+	
+	// if ([[request HTTPMethod] isEqualToString:@"POST"]) {
+	// 	 NSLog(@"Body:\n%@", [[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] autorelease]);
+	// }
+	
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
+	
+	// NSLog(@"Response:\n%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 	
 	if (connectionError) {
 		underlyingError = connectionError;
@@ -208,7 +216,6 @@
 			if ([self isMultiPartDataBasedOnTaskType] == YES) {
 				NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", [SDNetTask stringBoundary]];
 				[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-				
 				[request setHTTPBody:[self postBodyDataFromDictionary:parameters]];
 			}
 			else {
@@ -285,16 +292,11 @@
 - (NSData*) postBodyDataFromDictionary:(NSDictionary*)dictionary {
 	// setting up string boundaries
 	NSString *stringBoundary = [SDNetTask stringBoundary];
-	NSData *stringBoundaryData = [[NSString stringWithFormat:@"\r\n--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding];
-	NSData *stringBoundaryFinalData = [[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding];
 	
 	NSMutableData *postBody = [NSMutableData data];
 	
-	// necessary??
-	[self _appendToData:postBody formatWithUTF8:@"\r\n"];
-	
 	for (NSString *key in dictionary) {
-		[postBody appendData:stringBoundaryData];
+		[self _appendToData:postBody formatWithUTF8:@"--%@\r\n", stringBoundary];
 		
 		id object = [dictionary objectForKey:key];
 		
@@ -308,17 +310,26 @@
 		// call -appendData:. also, when would we even have only NSData? come to think of it,
 		// we might as well just delete this whole block, comments and all.
 		//		}
-		else if ([object isKindOfClass:[NSImage class]]) {
-			NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithData:[object TIFFRepresentation]] autorelease];
-			NSData *imageData = [rep representationUsingType:NSPNGFileType properties:nil];
+		else if ([object isKindOfClass:[NSURL class]]) {
+			// Get file name
+			NSString *fileName = [[object path] lastPathComponent];
 			
-			[self _appendToData:postBody formatWithUTF8:@"Content-Disposition: form-data; name=\"%@\"; filename=\"astyle.png\"\r\n", key];
-			[self _appendToData:postBody formatWithUTF8:@"Content-Type: image/png\r\n\r\n"];
-			[postBody appendData:imageData];
+			// Get mime type
+			NSString *mimeType = [self mimeTypeForFilename:fileName];
+			
+			// Get file contents
+			NSData *fileContents = [NSData dataWithContentsOfURL:object];
+			
+			[self _appendToData:postBody formatWithUTF8:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", key, fileName];
+			[self _appendToData:postBody formatWithUTF8:@"Content-Type: %@\r\n\r\n", mimeType];
+			[postBody appendData:fileContents];
+			//[self _appendToData:postBody formatWithUTF8:@"// File contents"];
 		}
+		
+		[self _appendToData:postBody formatWithUTF8:@"\r\n"];
 	}
 	
-	[postBody appendData:stringBoundaryFinalData];
+	[self _appendToData:postBody formatWithUTF8:@"--%@--\r\n\r\n", stringBoundary];
 	
 	return postBody;
 }
@@ -338,4 +349,18 @@
 	return errorStrings[errorCode];
 }
 
+- (NSString*) mimeTypeForFilename:(NSString*)filename {
+	NSString *ext = [[filename pathExtension] lowercaseString];
+	
+	if ([ext isEqualToString:@"jpg"] || [ext isEqualToString:@"jpeg"]) {
+		return @"image/jpg";
+	} else if ([ext isEqualToString:@"png"]) {
+		return @"image/png";
+	} else if ([ext isEqualToString:@"gif"]) {
+		return @"image/gif";
+	} else {
+		// Resonable default
+		return @"text/plain";
+	}
+}
 @end
