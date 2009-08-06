@@ -14,8 +14,6 @@
 
 @implementation SDFriendfeedTask
 
-@synthesize username;
-
 - (BOOL) validateType {
 	return (type > SDFriendfeedTaskDoNothing && type < SDFriendfeedTaskMAX);
 }
