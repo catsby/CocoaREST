@@ -57,6 +57,8 @@
 }
 
 - (void) runTask:(SDNetTask*)taskToRun {
+	if (taskToRun.username == nil) { taskToRun.username = self.username; }
+	if (taskToRun.password == nil) { taskToRun.password = self.password; }
 	[queue addOperation:taskToRun];
 }
 

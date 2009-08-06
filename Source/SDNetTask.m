@@ -33,6 +33,7 @@
 @synthesize errorCode;
 @synthesize error;
 @synthesize taskID;
+@synthesize username, password;
 
 + (id) taskWithManager:(SDNetTaskManager*)newManager {
 	return [[[self alloc] initWithManager:newManager] autorelease];
@@ -175,11 +176,11 @@
 }
 
 - (void) _setBasicHTTPAuthorizationForRequest:(NSMutableURLRequest*)request {
-	if (manager.username == nil || manager.password == nil)
+	if (self.username == nil || self.password == nil)
 		return;
 	
 	// Set header for HTTP Basic authentication explicitly, to avoid problems with proxies and other intermediaries
-	NSString *authStr = [NSString stringWithFormat:@"%@:%@", manager.username, manager.password];
+	NSString *authStr = [NSString stringWithFormat:@"%@:%@", self.username, self.password];
 	NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
 	NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodingWithLineLength:80]];
 	[request setValue:authValue forHTTPHeaderField:@"Authorization"];
