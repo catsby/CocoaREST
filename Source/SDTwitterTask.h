@@ -73,6 +73,7 @@ typedef enum _SDTwitterDeviceType {
 @interface SDTwitterTask : SDNetTask {
 	SDTwitterTaskManager *twitterManager;
 	
+	int cursor;
 	int count;
 	int page;
 	
@@ -113,6 +114,7 @@ typedef enum _SDTwitterDeviceType {
 
 // writable properties: set up before running
 
+@property int cursor;
 @property int count;
 @property int page;
 

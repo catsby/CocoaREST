@@ -18,6 +18,7 @@
 
 @implementation SDTwitterTask
 
+@synthesize cursor;
 @synthesize count;
 @synthesize page;
 @synthesize text;
@@ -94,6 +95,7 @@
 - (id) copyWithZone:(NSZone*)zone {
 	SDTwitterTask *task = [super copyWithZone:zone];
 	
+	task.cursor = self.cursor;
 	task.count = self.count;
 	task.page = self.page;
 	task.text = self.text;
@@ -241,6 +243,9 @@
 }
 
 - (void) addParametersToDictionary:(NSMutableDictionary*)parameters {
+	if (cursor != 0)
+		[parameters setObject:[NSString stringWithFormat:@"%d", (cursor)] forKey:@"cursor"];		
+	
 	if (count > 0)
 		[parameters setObject:[NSString stringWithFormat:@"%d", (count)] forKey:@"count"];
 	
