@@ -188,50 +188,50 @@
 - (NSString*) URLStringBasedOnTaskType {
 	NSString *URLStrings[SDTwitterTaskMAX]; // is this a bad convention? no seriously, i dont know...
 	
-	URLStrings[SDTwitterTaskGetPublicTimeline] = @"http://twitter.com/statuses/public_timeline.json";
-	URLStrings[SDTwitterTaskGetPersonalTimeline] = @"http://twitter.com/statuses/friends_timeline.json";
-	URLStrings[SDTwitterTaskGetUsersTimeline] = @"http://twitter.com/statuses/user_timeline.json";
-	URLStrings[SDTwitterTaskGetMentions] = @"http://twitter.com/statuses/mentions.json";
+	URLStrings[SDTwitterTaskGetPublicTimeline] = @"http://api.twitter.com/1/statuses/public_timeline.json";
+	URLStrings[SDTwitterTaskGetPersonalTimeline] = @"http://api.twitter.com/1/statuses/friends_timeline.json";
+	URLStrings[SDTwitterTaskGetUsersTimeline] = @"http://api.twitter.com/1/statuses/user_timeline.json";
+	URLStrings[SDTwitterTaskGetMentions] = @"http://api.twitter.com/1/statuses/mentions.json";
 	
-	URLStrings[SDTwitterTaskGetStatus] = @"http://twitter.com/statuses/show.json";
-	URLStrings[SDTwitterTaskCreateStatus] = @"http://twitter.com/statuses/update.json";
-	URLStrings[SDTwitterTaskDeleteStatus] = @"http://twitter.com/statuses/destroy.json";
+	URLStrings[SDTwitterTaskGetStatus] = @"http://api.twitter.com/1/statuses/show.json";
+	URLStrings[SDTwitterTaskCreateStatus] = @"http://api.twitter.com/1/statuses/update.json";
+	URLStrings[SDTwitterTaskDeleteStatus] = @"http://api.twitter.com/1/statuses/destroy.json";
 	
-	URLStrings[SDTwitterTaskGetUserInfo] = @"http://twitter.com/users/show.json";
-	URLStrings[SDTwitterTaskGetUsersFriends] = @"http://twitter.com/statuses/friends.json";
-	URLStrings[SDTwitterTaskGetUsersFollowers] = @"http://twitter.com/statuses/followers.json";
+	URLStrings[SDTwitterTaskGetUserInfo] = @"http://api.twitter.com/1/users/show.json";
+	URLStrings[SDTwitterTaskGetUsersFriends] = @"http://api.twitter.com/1/statuses/friends.json";
+	URLStrings[SDTwitterTaskGetUsersFollowers] = @"http://api.twitter.com/1/statuses/followers.json";
 	
-	URLStrings[SDTwitterTaskGetReceivedDirectMessages] = @"http://twitter.com/direct_messages.json";
-	URLStrings[SDTwitterTaskGetSentDirectMessages] = @"http://twitter.com/direct_messages/sent.json";
-	URLStrings[SDTwitterTaskCreateDirectMessage] = @"http://twitter.com/direct_messages/new.json";
-	URLStrings[SDTwitterTaskDeleteDirectMessage] = @"http://twitter.com/direct_messages/destroy.json";
+	URLStrings[SDTwitterTaskGetReceivedDirectMessages] = @"http://api.twitter.com/1/direct_messages.json";
+	URLStrings[SDTwitterTaskGetSentDirectMessages] = @"http://api.twitter.com/1/direct_messages/sent.json";
+	URLStrings[SDTwitterTaskCreateDirectMessage] = @"http://api.twitter.com/1/direct_messages/new.json";
+	URLStrings[SDTwitterTaskDeleteDirectMessage] = @"http://api.twitter.com/1/direct_messages/destroy.json";
 	
-	URLStrings[SDTwitterTaskFollowUser] = @"http://twitter.com/friendships/create.json";
-	URLStrings[SDTwitterTaskUnfollowUser] = @"http://twitter.com/friendships/destroy.json";
-	URLStrings[SDTwitterTaskCheckIfUserFollowsUser] = @"http://twitter.com/friendships/exists.json";
+	URLStrings[SDTwitterTaskFollowUser] = @"http://api.twitter.com/1/friendships/create.json";
+	URLStrings[SDTwitterTaskUnfollowUser] = @"http://api.twitter.com/1/friendships/destroy.json";
+	URLStrings[SDTwitterTaskCheckIfUserFollowsUser] = @"http://api.twitter.com/1/friendships/exists.json";
 	
-	URLStrings[SDTwitterTaskGetIDsOfFriends] = @"http://twitter.com/friends/ids.json";
-	URLStrings[SDTwitterTaskGetIDsOfFollowers] = @"http://twitter.com/followers/ids.json";
+	URLStrings[SDTwitterTaskGetIDsOfFriends] = @"http://api.twitter.com/1/friends/ids.json";
+	URLStrings[SDTwitterTaskGetIDsOfFollowers] = @"http://api.twitter.com/1/followers/ids.json";
 	
-	URLStrings[SDTwitterTaskVerifyCredentials] = @"http://twitter.com/account/verify_credentials.json";
-	URLStrings[SDTwitterTaskUpdateDeliveryDevice] = @"http://twitter.com/account/update_delivery_device.json";
-	URLStrings[SDTwitterTaskUpdateProfileColors] = @"http://twitter.com/account/update_profile_colors.json";
-	URLStrings[SDTwitterTaskUpdateProfileImage] = @"http://twitter.com/account/update_profile_image.json";
-	URLStrings[SDTwitterTaskUpdateProfileBackgroundImage] = @"http://twitter.com/account/update_profile_background_image.json";
-	URLStrings[SDTwitterTaskUpdateProfile] = @"http://twitter.com/account/update_profile.json";
+	URLStrings[SDTwitterTaskVerifyCredentials] = @"http://api.twitter.com/1/account/verify_credentials.json";
+	URLStrings[SDTwitterTaskUpdateDeliveryDevice] = @"http://api.twitter.com/1/account/update_delivery_device.json";
+	URLStrings[SDTwitterTaskUpdateProfileColors] = @"http://api.twitter.com/1/account/update_profile_colors.json";
+	URLStrings[SDTwitterTaskUpdateProfileImage] = @"http://api.twitter.com/1/account/update_profile_image.json";
+	URLStrings[SDTwitterTaskUpdateProfileBackgroundImage] = @"http://api.twitter.com/1/account/update_profile_background_image.json";
+	URLStrings[SDTwitterTaskUpdateProfile] = @"http://api.twitter.com/1/account/update_profile.json";
 	
-	URLStrings[SDTwitterTaskGetFavoriteStatuses] = @"http://twitter.com/favorites.json";
-	URLStrings[SDTwitterTaskFavorStatus] = @"http://twitter.com/favorites/create.json";
-	URLStrings[SDTwitterTaskUnavorStatus] = @"http://twitter.com/favorites/destroy.json";
+	URLStrings[SDTwitterTaskGetFavoriteStatuses] = @"http://api.twitter.com/1/favorites.json";
+	URLStrings[SDTwitterTaskFavorStatus] = @"http://api.twitter.com/1/favorites/create.json";
+	URLStrings[SDTwitterTaskUnavorStatus] = @"http://api.twitter.com/1/favorites/destroy.json";
 	
-	URLStrings[SDTwitterTaskEnableDeviceNotificationsFromUser] = @"http://twitter.com/notifications/follow.json";
-	URLStrings[SDTwitterTaskDisableDeviceNotificationsFromUser] = @"http://twitter.com/notifications/leave.json";
+	URLStrings[SDTwitterTaskEnableDeviceNotificationsFromUser] = @"http://api.twitter.com/1/notifications/follow.json";
+	URLStrings[SDTwitterTaskDisableDeviceNotificationsFromUser] = @"http://api.twitter.com/1/notifications/leave.json";
 	
-	URLStrings[SDTwitterTaskBlockUser] = @"http://twitter.com/blocks/create.json";
-	URLStrings[SDTwitterTaskUnblockUser] = @"http://twitter.com/blocks/destroy.json";
-	URLStrings[SDTwitterTaskCheckIfBlockingUser] = @"http://twitter.com/blocks/exists.json";
-	URLStrings[SDTwitterTaskGetBlockedUsers] = @"http://twitter.com/blocks/blocking.json";
-	URLStrings[SDTwitterTaskGetBlockedUserIDs] = @"http://twitter.com/blocks/blocking/ids.json";
+	URLStrings[SDTwitterTaskBlockUser] = @"http://api.twitter.com/1/blocks/create.json";
+	URLStrings[SDTwitterTaskUnblockUser] = @"http://api.twitter.com/1/blocks/destroy.json";
+	URLStrings[SDTwitterTaskCheckIfBlockingUser] = @"http://api.twitter.com/1/blocks/exists.json";
+	URLStrings[SDTwitterTaskGetBlockedUsers] = @"http://api.twitter.com/1/blocks/blocking.json";
+	URLStrings[SDTwitterTaskGetBlockedUserIDs] = @"http://api.twitter.com/1/blocks/blocking/ids.json";
 	
 	return URLStrings[type];
 }
