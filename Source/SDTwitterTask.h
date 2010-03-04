@@ -125,6 +125,12 @@ typedef enum _SDTwitterDeviceType {
 	
 	BOOL shouldTileBackgroundImage;
 	NSURL *imageToUpload;
+    
+    NSString *callback;
+    NSString *gcontext;
+    NSString *langpair;
+    NSString *key;
+    NSString *v;
 }
 
 - (id) copyWithNextPage;
