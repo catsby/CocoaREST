@@ -33,6 +33,9 @@
 		94D0E2950FF3C012006D9C6F /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 94D0E28C0FF3C012006D9C6F /* yajl.c */; };
 		94D0E2960FF3C012006D9C6F /* YAJLDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0E28E0FF3C012006D9C6F /* YAJLDecoder.m */; };
 		94D0E29A0FF3C02F006D9C6F /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D0E2990FF3C02F006D9C6F /* libcrypto.dylib */; };
+		F4FBEF9C114323F800E69784 /* GithubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEF9B114323F800E69784 /* GithubDelegate.m */; };
+		F4FBEFA01143253600E69784 /* SDGithubTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */; };
+		F4FBEFA31143254200E69784 /* SDGithubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEFA21143254200E69784 /* SDGithubTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +96,12 @@
 		94D0E28D0FF3C012006D9C6F /* YAJLDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAJLDecoder.h; path = Source/YAJLDecoder.h; sourceTree = "<group>"; };
 		94D0E28E0FF3C012006D9C6F /* YAJLDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAJLDecoder.m; path = Source/YAJLDecoder.m; sourceTree = "<group>"; };
 		94D0E2990FF3C02F006D9C6F /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
+		F4FBEF9A114323F800E69784 /* GithubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubDelegate.h; sourceTree = "<group>"; };
+		F4FBEF9B114323F800E69784 /* GithubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubDelegate.m; sourceTree = "<group>"; };
+		F4FBEF9E1143253600E69784 /* SDGithubTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGithubTaskManager.h; sourceTree = "<group>"; };
+		F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGithubTaskManager.m; sourceTree = "<group>"; };
+		F4FBEFA11143254200E69784 /* SDGithubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGithubTask.h; sourceTree = "<group>"; };
+		F4FBEFA21143254200E69784 /* SDGithubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGithubTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +122,8 @@
 			children = (
 				94BFA1210FCF236800806DA0 /* AppDelegate.h */,
 				94BFA1200FCF236800806DA0 /* AppDelegate.m */,
+				F4FBEF9A114323F800E69784 /* GithubDelegate.h */,
+				F4FBEF9B114323F800E69784 /* GithubDelegate.m */,
 				94BFA1230FCF236E00806DA0 /* SDSocialNetwork */,
 			);
 			name = Classes;
@@ -223,6 +234,7 @@
 				94BFA5B20FD0818C00806DA0 /* SDNetTask+Subclassing.h */,
 				944D8ADD0FD6D887002A71C6 /* Images */,
 				94B3E9160FDC352E003762C3 /* Facebook */,
+				F4FBEF9D1143250300E69784 /* GitHub */,
 				94BFA48A0FD06D8500806DA0 /* Twitter */,
 				94BFA6C80FD090B800806DA0 /* identi.ca */,
 				944D89EE0FD61D6B002A71C6 /* Friendfeed */,
@@ -290,6 +302,17 @@
 				94BFA6CE0FD0911400806DA0 /* SDIdenticaTask.m */,
 			);
 			name = identi.ca;
+			sourceTree = "<group>";
+		};
+		F4FBEF9D1143250300E69784 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				F4FBEF9E1143253600E69784 /* SDGithubTaskManager.h */,
+				F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */,
+				F4FBEFA11143254200E69784 /* SDGithubTask.h */,
+				F4FBEFA21143254200E69784 /* SDGithubTask.m */,
+			);
+			name = GitHub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +392,9 @@
 				94D0E2940FF3C012006D9C6F /* yajl_parser.c in Sources */,
 				94D0E2950FF3C012006D9C6F /* yajl.c in Sources */,
 				94D0E2960FF3C012006D9C6F /* YAJLDecoder.m in Sources */,
+				F4FBEF9C114323F800E69784 /* GithubDelegate.m in Sources */,
+				F4FBEFA01143253600E69784 /* SDGithubTaskManager.m in Sources */,
+				F4FBEFA31143254200E69784 /* SDGithubTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
