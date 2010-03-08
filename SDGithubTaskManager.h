@@ -16,6 +16,9 @@
 	int limitMaxAmount;
 	int limitRemainingAmount;
 	NSTimeInterval limitResetEpochDate;
+    
+    NSString *repo;
+    NSString *user;     //  not necessarily the same as username
 }
 
 // the following properties are set during every task
@@ -24,5 +27,8 @@
 @property int limitMaxAmount;
 @property int limitRemainingAmount;
 @property NSTimeInterval limitResetEpochDate;
+
+@property (copy) NSString *repo;
+@property (copy) NSString *user;
 
 @end

@@ -54,8 +54,9 @@
 
 - (NSString*) URLStringBasedOnTaskType {
 	NSString *URLStrings[SDGithubTaskMAX]; // is this a bad convention? no seriously, i dont know...
-	
-	URLStrings[SDGithubTaskGetRepos] = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", githubManager.username];
+
+	URLStrings[SDGithubTaskGetRepos]        = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", githubManager.username];
+	URLStrings[SDGithubTaskGetRepoNetwork]  = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@/%@/network", githubManager.user, githubManager.repo];
 	
 	return URLStrings[type];
 }
@@ -67,7 +68,6 @@
 }
 
 - (void) sendResultsToDelegate {
-    NSLog(@"sendResultsToDelegate in Github");
 	if ([results isKindOfClass:[NSDictionary class]] && [[results allKeys] containsObject:@"error"]) {
 		error = [NSError errorWithDomain:@"SDNetDomain" code:SDNetTaskErrorServiceDefinedError userInfo:nil];
 		[self sendErrorToDelegate];

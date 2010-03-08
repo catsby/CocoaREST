@@ -15,9 +15,11 @@
 	SDGithubTaskManager *manager;
 	
 	BOOL isWaiting;
-	NSArray *results;
+	NSArray *repositories;
+    NSArray *forks;
+    
 	
-	IBOutlet NSTableView *resultsView;
+	IBOutlet NSTableView *repositoriesView;
 	IBOutlet NSTextField *userField;
 	IBOutlet NSTextField *userLabel;
 	IBOutlet NSTextField *apiTokenField;
@@ -26,9 +28,9 @@
 }
 
 @property BOOL isWaiting;
-@property (copy) NSArray *results;
+@property (copy) NSArray *repositories;
+@property (copy) NSArray *forks;
 
 - (IBAction) runTask:(id)sender;
-- (IBAction) findImage:(id)sender;
 
 @end
