@@ -33,9 +33,9 @@
 		94D0E2950FF3C012006D9C6F /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 94D0E28C0FF3C012006D9C6F /* yajl.c */; };
 		94D0E2960FF3C012006D9C6F /* YAJLDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0E28E0FF3C012006D9C6F /* YAJLDecoder.m */; };
 		94D0E29A0FF3C02F006D9C6F /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D0E2990FF3C02F006D9C6F /* libcrypto.dylib */; };
+		F44B340811497EC400380BCC /* SDGithubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B340611497EC400380BCC /* SDGithubTask.m */; };
+		F44B340911497EC400380BCC /* SDGithubTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B340711497EC400380BCC /* SDGithubTaskManager.m */; };
 		F4FBEF9C114323F800E69784 /* GithubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEF9B114323F800E69784 /* GithubDelegate.m */; };
-		F4FBEFA01143253600E69784 /* SDGithubTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */; };
-		F4FBEFA31143254200E69784 /* SDGithubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FBEFA21143254200E69784 /* SDGithubTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,12 +96,12 @@
 		94D0E28D0FF3C012006D9C6F /* YAJLDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAJLDecoder.h; path = Source/YAJLDecoder.h; sourceTree = "<group>"; };
 		94D0E28E0FF3C012006D9C6F /* YAJLDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAJLDecoder.m; path = Source/YAJLDecoder.m; sourceTree = "<group>"; };
 		94D0E2990FF3C02F006D9C6F /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
+		F44B340511497EC400380BCC /* SDGithubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDGithubTask.h; path = Source/SDGithubTask.h; sourceTree = "<group>"; };
+		F44B340611497EC400380BCC /* SDGithubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDGithubTask.m; path = Source/SDGithubTask.m; sourceTree = "<group>"; };
+		F44B340711497EC400380BCC /* SDGithubTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDGithubTaskManager.m; path = Source/SDGithubTaskManager.m; sourceTree = "<group>"; };
 		F4FBEF9A114323F800E69784 /* GithubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubDelegate.h; sourceTree = "<group>"; };
 		F4FBEF9B114323F800E69784 /* GithubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubDelegate.m; sourceTree = "<group>"; };
-		F4FBEF9E1143253600E69784 /* SDGithubTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGithubTaskManager.h; sourceTree = "<group>"; };
-		F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGithubTaskManager.m; sourceTree = "<group>"; };
-		F4FBEFA11143254200E69784 /* SDGithubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGithubTask.h; sourceTree = "<group>"; };
-		F4FBEFA21143254200E69784 /* SDGithubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGithubTask.m; sourceTree = "<group>"; };
+		F4FBEF9E1143253600E69784 /* SDGithubTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDGithubTaskManager.h; path = Source/SDGithubTaskManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,10 +307,10 @@
 		F4FBEF9D1143250300E69784 /* GitHub */ = {
 			isa = PBXGroup;
 			children = (
+				F44B340511497EC400380BCC /* SDGithubTask.h */,
+				F44B340611497EC400380BCC /* SDGithubTask.m */,
+				F44B340711497EC400380BCC /* SDGithubTaskManager.m */,
 				F4FBEF9E1143253600E69784 /* SDGithubTaskManager.h */,
-				F4FBEF9F1143253600E69784 /* SDGithubTaskManager.m */,
-				F4FBEFA11143254200E69784 /* SDGithubTask.h */,
-				F4FBEFA21143254200E69784 /* SDGithubTask.m */,
 			);
 			name = GitHub;
 			sourceTree = "<group>";
@@ -393,8 +393,8 @@
 				94D0E2950FF3C012006D9C6F /* yajl.c in Sources */,
 				94D0E2960FF3C012006D9C6F /* YAJLDecoder.m in Sources */,
 				F4FBEF9C114323F800E69784 /* GithubDelegate.m in Sources */,
-				F4FBEFA01143253600E69784 /* SDGithubTaskManager.m in Sources */,
-				F4FBEFA31143254200E69784 /* SDGithubTask.m in Sources */,
+				F44B340811497EC400380BCC /* SDGithubTask.m in Sources */,
+				F44B340911497EC400380BCC /* SDGithubTaskManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
