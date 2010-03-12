@@ -17,6 +17,12 @@ typedef enum _SDGithubTaskType {
 	SDGithubTaskGetRepos,
 	SDGithubTaskGetRepoNetwork,
     
+    //  User Information
+    SDGithubTaskUserSearch,
+    SDGithubTaskUserShow,
+    SDGithubTaskUserUpdate,
+    
+    
 	SDGithubTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDGithubTaskType;
 
@@ -25,6 +31,13 @@ typedef enum _SDGithubTaskType {
     
     NSString *user;
     NSString *repo;
+
+    //  Fields available for update with SDGithubTaskUserUpdate
+    NSString *name;
+    NSString *email;
+    NSString *blog;
+    NSString *company;
+    NSString *location;
     
     //  paramter received from network_meta call, used to get up-to-date network data 
     NSString *nethash;
@@ -32,5 +45,10 @@ typedef enum _SDGithubTaskType {
 
 @property (copy) NSString *user;
 @property (copy) NSString *repo;
+@property (copy) NSString *name;
+@property (copy) NSString *email;
+@property (copy) NSString *blog;
+@property (copy) NSString *company;
+@property (copy) NSString *location;
 
 @end

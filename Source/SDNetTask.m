@@ -103,15 +103,15 @@
 	NSError *connectionError = nil;
 	NSError *errorFromParser = nil;
 	
-	// NSLog(@"Request URL: %@", [request URL]);
+	NSLog(@"Request URL: %@", [request URL]);
 	
-	// if ([[request HTTPMethod] isEqualToString:@"POST"]) {
-	// 	 NSLog(@"Body:\n%@", [[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] autorelease]);
-	// }
+	if ([[request HTTPMethod] isEqualToString:@"POST"]) {
+        NSLog(@"Body:\n%@", [[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] autorelease]);
+	}
 	
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
 	
-	// NSLog(@"Response:\n%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+	NSLog(@"Response:\n%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 	
 	if (connectionError) {
 		underlyingError = connectionError;

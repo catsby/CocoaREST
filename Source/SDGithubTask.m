@@ -17,6 +17,12 @@
 @synthesize user;
 @synthesize repo;
 
+@synthesize name;
+@synthesize email;
+@synthesize blog;
+@synthesize company;
+@synthesize location;
+
 
 - (id) initWithManager:(SDGithubTaskManager*)newManager {
 	if (self = [super initWithManager:newManager]) {
@@ -37,7 +43,7 @@
 
 //  Using each user's API Token in place of a password
 - (BOOL) shouldUseBasicHTTPAuthentication {
-	return YES;
+	return NO;
 }
 
 - (BOOL) isMultiPartDataBasedOnTaskType {
@@ -48,17 +54,63 @@
 
 - (SDHTTPMethod) methodBasedOnTaskType {
 	SDHTTPMethod method = SDHTTPMethodGet;
-
-	return method;
+	switch (type) {
+        case SDGithubTaskUserUpdate:
+			method = SDHTTPMethodPost;
+			break;
+    }
+    return method;
 }
 
-- (NSString*) URLStringBasedOnTaskType {
-	NSString *URLStrings[SDGithubTaskMAX]; // is this a bad convention? no seriously, i dont know...
+- (NSString*) URLStringBasedOnTaskType 
+{
+    switch (type) {
+		case SDGithubTaskGetRepos:
+            assert([user isNotEqualTo:@""]);
+			return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", user];
+			break;
+        case SDGithubTaskGetRepoNetwork:
+            assert([user isNotEqualTo:@""]);
+            assert([repo isNotEqualTo:@""]);
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
+            break;
+        case SDGithubTaskUserShow:
+            assert([user isNotEqualTo:@""]);
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", user];
+            break;
+        case SDGithubTaskUserUpdate:    //  update by adding updating fields in addParametersToDictionary:
+            assert([githubManager.password isNotEqualTo:@""]);
+            assert([githubManager.username isNotEqualTo:@""]);
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", githubManager.username];
+            break;            
+    }
+    return nil;
+}
 
-	URLStrings[SDGithubTaskGetRepos]        = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", githubManager.username];
-	URLStrings[SDGithubTaskGetRepoNetwork]  = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@/%@/network", githubManager.user, githubManager.repo];
+- (void) addParametersToDictionary:(NSMutableDictionary*)parameters 
+{
+    NSLog(@"adding parameters:");
+    if(name)
+		[parameters setObject:name forKey:@"name"];
 	
-	return URLStrings[type];
+	if(email)
+		[parameters setObject:email forKey:@"email"];
+    
+    if(blog)
+		[parameters setObject:name forKey:@"blog"];
+	
+	if(company)
+		[parameters setObject:email forKey:@"company"];
+    
+	if(location)
+		[parameters setObject:email forKey:@"location"];
+    
+    
+	if(githubManager.username)
+		[parameters setObject:githubManager.username forKey:@"login"];
+    
+	if(githubManager.password)
+		[parameters setObject:githubManager.password forKey:@"token"];
 }
 
 - (SDParseFormat) parseFormatBasedOnTaskType {

@@ -15,9 +15,6 @@
 @synthesize limitRemainingAmount;
 @synthesize limitResetEpochDate;
 
-@synthesize repo;
-@synthesize user;
-
 - (void) dealloc {
 	[super dealloc];
 }
