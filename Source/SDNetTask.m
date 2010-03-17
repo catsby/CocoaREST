@@ -111,7 +111,7 @@
 	
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&connectionError];
 	
-	NSLog(@"Response:\n%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+	//NSLog(@"Response:\n%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 	
 	if (connectionError) {
 		underlyingError = connectionError;
