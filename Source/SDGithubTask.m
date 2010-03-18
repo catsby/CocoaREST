@@ -90,27 +90,26 @@
 - (void) addParametersToDictionary:(NSMutableDictionary*)parameters 
 {
     NSLog(@"adding parameters:");
-    if(name)
-		[parameters setObject:name forKey:@"name"];
+    if(name && [name isNotEqualTo:@""])
+		[parameters setObject:name forKey:@"values[name]"];
 	
-	if(email)
-		[parameters setObject:email forKey:@"email"];
+	if(email && [name isNotEqualTo:@""])
+		[parameters setObject:email forKey:@"values[email]"];
     
-    if(blog)
-		[parameters setObject:name forKey:@"blog"];
+    if(blog && [name isNotEqualTo:@""])
+		[parameters setObject:name forKey:@"values[blog]"];
 	
-	if(company)
-		[parameters setObject:email forKey:@"company"];
+	if(company && [name isNotEqualTo:@""])
+		[parameters setObject:email forKey:@"values[company]"];
     
-	if(location)
-		[parameters setObject:email forKey:@"location"];
+	if(location && [name isNotEqualTo:@""])
+		[parameters setObject:location forKey:@"values[location]"];
     
     
-	if(githubManager.username)
+	if(([githubManager.username isNotEqualTo:@""]) && ([githubManager.password isNotEqualTo:@""])) {
 		[parameters setObject:githubManager.username forKey:@"login"];
-    
-	if(githubManager.password)
 		[parameters setObject:githubManager.password forKey:@"token"];
+    }
 }
 
 - (SDParseFormat) parseFormatBasedOnTaskType {
