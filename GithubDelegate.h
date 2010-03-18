@@ -17,6 +17,7 @@
 	BOOL isWaiting;
 	NSArray *repositories;
     NSArray *forks;
+    NSDictionary *user;
     
 	
 	IBOutlet NSTableView *repositoriesView;
@@ -30,6 +31,7 @@
 @property BOOL isWaiting;
 @property (copy) NSArray *repositories;
 @property (copy) NSArray *forks;
+@property (copy) NSDictionary *user;
 
 - (IBAction) runTask:(id)sender;
 

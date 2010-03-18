@@ -14,6 +14,7 @@
 @synthesize isWaiting;
 @synthesize repositories;
 @synthesize forks;
+@synthesize user;
 
 - (void) awakeFromNib
 {
@@ -38,6 +39,9 @@
 
 - (void) githubManager:(SDGithubTaskManager*)manager resultsReadyForTask:(SDGithubTask*)task {
 	self.repositories = [task.results valueForKey:@"repositories"];
+    self.user         = [task.results objectForKey:@"user"];
+	self.forks = [task.results valueForKey:@"network"];
+
 	self.isWaiting = NO;
 }
 
