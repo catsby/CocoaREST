@@ -89,7 +89,6 @@
 
 - (void) addParametersToDictionary:(NSMutableDictionary*)parameters 
 {
-    NSLog(@"adding parameters:");
     if(name && [name isNotEqualTo:@""])
 		[parameters setObject:name forKey:@"values[name]"];
 	

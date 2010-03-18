@@ -25,11 +25,12 @@
 }
 
 - (IBAction) runTask:(id)sender {
-	manager.username = [userField stringValue];
-	manager.password = [apiTokenField stringValue];
 	
 	SDGithubTask *basicTask = [SDGithubTask taskWithManager:manager];
+	manager.username = [userField stringValue];
+	manager.password = [apiTokenField stringValue];
 	basicTask.type = [[taskTypeButton selectedItem] tag];
+    basicTask.user = [userField stringValue];
 	[basicTask run];
 	
 	self.isWaiting = YES;
@@ -60,11 +61,11 @@
         forkManager.successSelector = @selector(githubForkManager:resultsReadyForTask:);
         forkManager.failSelector = @selector(githubForkManager:failedForTask:);
         forkManager.maxConcurrentTasks = 3;
-        forkManager.user = [userField stringValue];
-        forkManager.repo = [[self.repositories objectAtIndex:index] valueForKey:@"name"];
         
         SDGithubTask *networkTask = [SDGithubTask taskWithManager:forkManager];
         networkTask.type = SDGithubTaskGetRepoNetwork;
+        networkTask.user = [userField stringValue];
+        networkTask.repo = [[self.repositories objectAtIndex:index] valueForKey:@"name"];
         [networkTask run];
         
         self.isWaiting = YES;

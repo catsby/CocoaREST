@@ -4973,6 +4973,7 @@
 					<string>617.IBPluginDependency</string>
 					<string>618.IBPluginDependency</string>
 					<string>621.IBPluginDependency</string>
+					<string>622.IBPluginDependency</string>
 					<string>623.IBPluginDependency</string>
 					<string>72.IBPluginDependency</string>
 					<string>72.ImportedFromIB2</string>
@@ -5277,6 +5278,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
