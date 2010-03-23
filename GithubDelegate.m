@@ -15,6 +15,7 @@
 @synthesize repositories;
 @synthesize forks;
 @synthesize user;
+@synthesize issues;
 
 - (void) awakeFromNib
 {
@@ -40,7 +41,6 @@
 - (void) githubManager:(SDGithubTaskManager*)manager resultsReadyForTask:(SDGithubTask*)task {
 	self.repositories = [task.results valueForKey:@"repositories"];
     self.user         = [task.results objectForKey:@"user"];
-	self.forks = [task.results valueForKey:@"network"];
 
 	self.isWaiting = NO;
 }
@@ -72,6 +72,19 @@
         networkTask.repo = [[self.repositories objectAtIndex:index] valueForKey:@"name"];
         [networkTask run];
         
+        SDGithubTaskManager *issuesManager = [[SDGithubTaskManager manager] retain];
+        issuesManager.delegate = self;
+        issuesManager.successSelector = @selector(githubIssuesManager:resultsReadyForTask:);
+        issuesManager.failSelector = @selector(githubIssuesManager:failedForTask:);
+        issuesManager.maxConcurrentTasks = 3;
+        
+        SDGithubTask *issuesTask = [SDGithubTask taskWithManager:issuesManager];
+        issuesTask.type  = SDGithubTaskIssuesList;
+        issuesTask.user  = [userField stringValue];
+        issuesTask.repo  = [[self.repositories objectAtIndex:index] valueForKey:@"name"];
+        issuesTask.state = @"open";
+        [issuesTask run];        
+        
         self.isWaiting = YES;
     }
 }
@@ -93,4 +106,19 @@
 	[alert runModal];
 }
 
+- (void) githubIssuesManager:(SDGithubTaskManager*)manager resultsReadyForTask:(SDGithubTask*)task {
+	self.isWaiting = NO;
+	self.issues = [task.results valueForKey:@"issues"];
+}
+
+- (void) githubIssuesManager:(SDGithubTaskManager*)manager failedForTask:(SDGithubTask*)task {
+	self.isWaiting = NO;
+	
+	self.issues = nil;
+	
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"Error"];
+	[alert setInformativeText:[task.error localizedDescription]];
+	[alert runModal];
+}
 @end

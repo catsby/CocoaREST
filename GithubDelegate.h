@@ -18,8 +18,8 @@
 	NSArray *repositories;
     NSArray *forks;
     NSDictionary *user;
+    NSArray *issues;
     
-	
 	IBOutlet NSTableView *repositoriesView;
 	IBOutlet NSTextField *userField;
 	IBOutlet NSTextField *userLabel;
@@ -30,6 +30,7 @@
 
 @property BOOL isWaiting;
 @property (copy) NSArray *repositories;
+@property (copy) NSArray *issues;
 @property (copy) NSArray *forks;
 @property (copy) NSDictionary *user;
 

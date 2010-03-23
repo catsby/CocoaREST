@@ -22,6 +22,8 @@
 @synthesize blog;
 @synthesize company;
 @synthesize location;
+@synthesize state;
+@synthesize number;
 
 
 - (id) initWithManager:(SDGithubTaskManager*)newManager {
@@ -66,23 +68,26 @@
 {
     switch (type) {
 		case SDGithubTaskGetRepos:
-            assert([user isNotEqualTo:@""]);
 			return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", user];
 			break;
         case SDGithubTaskGetRepoNetwork:
-            assert([user isNotEqualTo:@""]);
-            assert([repo isNotEqualTo:@""]);
             return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
             break;
         case SDGithubTaskUserShow:
-            assert([user isNotEqualTo:@""]);
             return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", user];
             break;
         case SDGithubTaskUserUpdate:    //  update by adding updating fields in addParametersToDictionary:
-            assert([githubManager.password isNotEqualTo:@""]);
-            assert([githubManager.username isNotEqualTo:@""]);
             return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", githubManager.username];
-            break;            
+            break;     
+        case SDGithubTaskIssuesList:    
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, state];
+            break;
+        case SDGithubTaskIssuesShow:    
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/show/%@/%@/%@", user, repo, number];
+            break;     
+        case SDGithubTaskIssuesComments:    
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/comments/%@/%@/%@", user, repo, number];
+            break;
     }
     return nil;
 }

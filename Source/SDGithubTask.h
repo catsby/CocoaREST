@@ -22,6 +22,9 @@ typedef enum _SDGithubTaskType {
     SDGithubTaskUserShow,
     SDGithubTaskUserUpdate,
     
+    SDGithubTaskIssuesList,
+    SDGithubTaskIssuesShow,
+    SDGithubTaskIssuesComments,
     
 	SDGithubTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDGithubTaskType;
@@ -39,6 +42,10 @@ typedef enum _SDGithubTaskType {
     NSString *company;
     NSString *location;
     
+    //  Fields for Issues
+    NSString *state;
+    NSString *number;
+    
     //  paramter received from network_meta call, used to get up-to-date network data 
     NSString *nethash;
 }
@@ -50,5 +57,7 @@ typedef enum _SDGithubTaskType {
 @property (copy) NSString *blog;
 @property (copy) NSString *company;
 @property (copy) NSString *location;
+@property (copy) NSString *state;
+@property (copy) NSString *number;
 
 @end
