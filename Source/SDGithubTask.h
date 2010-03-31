@@ -14,10 +14,12 @@
 
 typedef enum _SDGithubTaskType {
 	SDGithubTaskDoNothing,
+    
+    //  Repositories        http://develop.github.com/p/repo.html
 	SDGithubTaskGetRepos,
 	SDGithubTaskGetRepoNetwork,
     
-    //  User Information
+    //  User Information    http://develop.github.com/p/users.html
     SDGithubTaskUserSearch,
     SDGithubTaskUserShow,
     SDGithubTaskUserUpdate,
@@ -25,6 +27,10 @@ typedef enum _SDGithubTaskType {
     SDGithubTaskIssuesList,
     SDGithubTaskIssuesShow,
     SDGithubTaskIssuesComments,
+    
+    //  Network API         http://develop.github.com/p/network.html
+    SDGithubTaskNetworkMeta,
+    SDGithubTaskNetworkData,
     
 	SDGithubTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDGithubTaskType;
