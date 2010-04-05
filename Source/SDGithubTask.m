@@ -22,6 +22,7 @@
 @synthesize blog;
 @synthesize company;
 @synthesize location;
+@synthesize searchTerm;
 @synthesize state;
 @synthesize number;
 
@@ -58,6 +59,8 @@
 	SDHTTPMethod method = SDHTTPMethodGet;
 	switch (type) {
         case SDGithubTaskUserUpdate:
+        case SDGithubTaskUserFollow:
+        case SDGithubTaskUserUnFollow:
 			method = SDHTTPMethodPost;
 			break;
     }
@@ -73,12 +76,31 @@
         case SDGithubTaskGetRepoNetwork:
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
             break;
+        case SDGithubTaskUserSearch:
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/search/%@", searchTerm];
+            break;
         case SDGithubTaskUserShow:
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@", user];
             break;
-        case SDGithubTaskUserUpdate:    //  update by adding updating fields in addParametersToDictionary:
+        case SDGithubTaskUserUpdate:    //  update by adding POST data fields in addParametersToDictionary:
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@", githubManager.username];
             break;     
+        case SDGithubTaskUserFollowers:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@/followers", user];
+            break;     
+        case SDGithubTaskUserFollowing:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@/following", user];
+            break;     
+        case SDGithubTaskUserWatchedRepos:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/watched/%@", user];
+            break;    
+        case SDGithubTaskUserFollow:    //  expects POST authentication 
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/follow/%@", user];
+            break;     
+        case SDGithubTaskUserUnFollow:  //  expects POST authentication
+            NSLog(@"calling SDGithubTaskUserUnFollow");
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/unfollow/%@", user];
+            break;      
         case SDGithubTaskIssuesList:    
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, state];
             break;
