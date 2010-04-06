@@ -20,9 +20,7 @@ typedef enum _SDFriendfeedTaskType {
 } SDFriendfeedTaskType;
 
 @interface SDFriendfeedTask : SDNetTask {
-	NSString *username;
+	
 }
-
-@property (copy) NSString *username;
 
 @end

@@ -35,6 +35,9 @@ typedef enum _SDNetTaskError {
 	SDNetTaskError errorCode;
 	NSError *error;
 	NSError *underlyingError;
+	
+	NSString *username;
+	NSString *password;
 }
 
 // designated convenience initializer
@@ -55,6 +58,8 @@ typedef enum _SDNetTaskError {
 
 @property (readonly) SDNetTaskError errorCode;
 @property (readonly) NSError *error;
+@property (copy) NSString *username;
+@property (copy) NSString *password;
 
 @property (readonly) NSString *taskID; // DEPRECATED; do not use unless you REALLY want to.
 
