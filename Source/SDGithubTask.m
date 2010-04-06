@@ -23,9 +23,11 @@
 @synthesize company;
 @synthesize location;
 @synthesize searchTerm;
-@synthesize state;
-@synthesize number;
-
+@synthesize issueState;
+@synthesize issueNumber;
+@synthesize branch;
+@synthesize sha;
+@synthesize path;
 
 - (id) initWithManager:(SDGithubTaskManager*)newManager {
 	if (self = [super initWithManager:newManager]) {
@@ -102,17 +104,27 @@
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/unfollow/%@", user];
             break;      
         case SDGithubTaskIssuesList:    
-            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, state];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, issueState];
             break;
         case SDGithubTaskIssuesShow:    
-            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/show/%@/%@/%@", user, repo, number];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/show/%@/%@/%@", user, repo, issueNumber];
             break;     
         case SDGithubTaskIssuesComments:    
-            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/comments/%@/%@/%@", user, repo, number];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/comments/%@/%@/%@", user, repo, issueNumber];
         case SDGithubTaskNetworkMeta:
             return [NSString stringWithFormat:@"https://github.com/%@/%@/network_meta", user, repo];
         case SDGithubTaskNetworkData:
             return [NSString stringWithFormat:@"https://github.com/%@/%@/network_data_chunk", user, repo];            
+            break;
+        //  Commit API doesn't respond to HTTPS, issue filed here: http://support.github.com/discussions/repos/2848-commits-api-doesnt-work-with-calls-via-https
+        case SDGithubTaskCommitList:
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/commits/list/%@/%@/%@", user, repo, branch];            
+            break;
+        case SDGithubTaskCommitListFile:
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/commits/list/%@/%@/%@/%@", user, repo, branch, path];            
+            break;  
+        case SDGithubTaskCommitShow:
+            return [NSString stringWithFormat:@"http://github.com/api/v2/json/commits/show/%@/%@/%@", user, repo, sha];            
             break;
     }
     return nil;

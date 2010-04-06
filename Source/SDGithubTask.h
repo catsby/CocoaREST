@@ -38,6 +38,11 @@ typedef enum _SDGithubTaskType {
     SDGithubTaskNetworkMeta,
     SDGithubTaskNetworkData,
     
+    //  Commits API         http://develop.github.com/p/commits.html
+    SDGithubTaskCommitList,
+    SDGithubTaskCommitListFile,
+    SDGithubTaskCommitShow,
+    
 	SDGithubTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDGithubTaskType;
 
@@ -57,8 +62,13 @@ typedef enum _SDGithubTaskType {
     NSString *searchTerm;
     
     //  Fields for Issues
-    NSString *state;
-    NSString *number;
+    NSString *issueState;
+    NSString *issueNumber;
+    
+    //  Fields for commits
+    NSString *branch;
+    NSString *sha;
+    NSString *path;
     
     //  paramter received from network_meta call, used to get up-to-date network data 
     NSString *nethash;
@@ -72,7 +82,10 @@ typedef enum _SDGithubTaskType {
 @property (copy) NSString *company;
 @property (copy) NSString *location;
 @property (copy) NSString *searchTerm;
-@property (copy) NSString *state;
-@property (copy) NSString *number;
+@property (copy) NSString *issueState;
+@property (copy) NSString *issueNumber;
+@property (copy) NSString *branch;
+@property (copy) NSString *sha;
+@property (copy) NSString *path;
 
 @end

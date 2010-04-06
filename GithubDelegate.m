@@ -82,7 +82,7 @@
         issuesTask.type  = SDGithubTaskIssuesList;
         issuesTask.user  = [userField stringValue];
         issuesTask.repo  = [[self.repositories objectAtIndex:index] valueForKey:@"name"];
-        issuesTask.state = @"open";
+        issuesTask.issueState = @"open";
         [issuesTask run];        
         
         self.isWaiting = YES;
