@@ -14,17 +14,29 @@
 
 typedef enum _SDGithubTaskType {
 	SDGithubTaskDoNothing,
+    
+    //  Repositories        http://develop.github.com/p/repo.html
 	SDGithubTaskGetRepos,
 	SDGithubTaskGetRepoNetwork,
     
-    //  User Information
+    //  User information    http://develop.github.com/p/users.html
     SDGithubTaskUserSearch,
-    SDGithubTaskUserShow,
-    SDGithubTaskUserUpdate,
+    SDGithubTaskUserShow,               //  shows extra information if authenticated
+    SDGithubTaskUserUpdate,             //  POST, requires authentication 
+    SDGithubTaskUserFollowers,
+    SDGithubTaskUserFollowing,
+    SDGithubTaskUserWatchedRepos,
+    SDGithubTaskUserFollow,             //  POST, requires authentication 
+    SDGithubTaskUserUnFollow,           //  POST, requires authentication 
     
+    //  Issue information   http://develop.github.com/p/issues.html
     SDGithubTaskIssuesList,
     SDGithubTaskIssuesShow,
     SDGithubTaskIssuesComments,
+    
+    //  Network API         http://develop.github.com/p/network.html
+    SDGithubTaskNetworkMeta,
+    SDGithubTaskNetworkData,
     
 	SDGithubTaskMAX // NEVER use this value (srsly... kthxbye)
 } SDGithubTaskType;
@@ -42,6 +54,8 @@ typedef enum _SDGithubTaskType {
     NSString *company;
     NSString *location;
     
+    NSString *searchTerm;
+    
     //  Fields for Issues
     NSString *state;
     NSString *number;
@@ -57,6 +71,7 @@ typedef enum _SDGithubTaskType {
 @property (copy) NSString *blog;
 @property (copy) NSString *company;
 @property (copy) NSString *location;
+@property (copy) NSString *searchTerm;
 @property (copy) NSString *state;
 @property (copy) NSString *number;
 

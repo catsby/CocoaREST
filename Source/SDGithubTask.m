@@ -22,6 +22,7 @@
 @synthesize blog;
 @synthesize company;
 @synthesize location;
+@synthesize searchTerm;
 @synthesize state;
 @synthesize number;
 
@@ -58,6 +59,8 @@
 	SDHTTPMethod method = SDHTTPMethodGet;
 	switch (type) {
         case SDGithubTaskUserUpdate:
+        case SDGithubTaskUserFollow:
+        case SDGithubTaskUserUnFollow:
 			method = SDHTTPMethodPost;
 			break;
     }
@@ -68,25 +71,48 @@
 {
     switch (type) {
 		case SDGithubTaskGetRepos:
-			return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", user];
+			return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/show/%@", user];
 			break;
         case SDGithubTaskGetRepoNetwork:
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
+            break;
+        case SDGithubTaskUserSearch:
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/search/%@", searchTerm];
             break;
         case SDGithubTaskUserShow:
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", user];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@", user];
             break;
-        case SDGithubTaskUserUpdate:    //  update by adding updating fields in addParametersToDictionary:
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/user/show/%@", githubManager.username];
+        case SDGithubTaskUserUpdate:    //  update by adding POST data fields in addParametersToDictionary:
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@", githubManager.username];
             break;     
+        case SDGithubTaskUserFollowers:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@/followers", user];
+            break;     
+        case SDGithubTaskUserFollowing:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/show/%@/following", user];
+            break;     
+        case SDGithubTaskUserWatchedRepos:    
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/watched/%@", user];
+            break;    
+        case SDGithubTaskUserFollow:    //  expects POST authentication 
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/follow/%@", user];
+            break;     
+        case SDGithubTaskUserUnFollow:  //  expects POST authentication
+            NSLog(@"calling SDGithubTaskUserUnFollow");
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/unfollow/%@", user];
+            break;      
         case SDGithubTaskIssuesList:    
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, state];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/list/%@/%@/%@", user, repo, state];
             break;
         case SDGithubTaskIssuesShow:    
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/show/%@/%@/%@", user, repo, number];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/show/%@/%@/%@", user, repo, number];
             break;     
         case SDGithubTaskIssuesComments:    
-            return [NSString stringWithFormat:@"http://github.com/api/v2/json/issues/comments/%@/%@/%@", user, repo, number];
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/issues/comments/%@/%@/%@", user, repo, number];
+        case SDGithubTaskNetworkMeta:
+            return [NSString stringWithFormat:@"https://github.com/%@/%@/network_meta", user, repo];
+        case SDGithubTaskNetworkData:
+            return [NSString stringWithFormat:@"https://github.com/%@/%@/network_data_chunk", user, repo];            
             break;
     }
     return nil;
@@ -97,17 +123,20 @@
     if(name && [name isNotEqualTo:@""])
 		[parameters setObject:name forKey:@"values[name]"];
 	
-	if(email && [name isNotEqualTo:@""])
+	if(email && [email isNotEqualTo:@""])
 		[parameters setObject:email forKey:@"values[email]"];
     
-    if(blog && [name isNotEqualTo:@""])
+    if(blog && [blog isNotEqualTo:@""])
 		[parameters setObject:name forKey:@"values[blog]"];
 	
-	if(company && [name isNotEqualTo:@""])
+	if(company && [company isNotEqualTo:@""])
 		[parameters setObject:email forKey:@"values[company]"];
     
-	if(location && [name isNotEqualTo:@""])
+	if(location && [location isNotEqualTo:@""])
 		[parameters setObject:location forKey:@"values[location]"];
+    
+    if(nethash && [nethash isNotEqualTo:@""])
+		[parameters setObject:nethash forKey:@"nethash"];
     
     
 	if(([githubManager.username isNotEqualTo:@""]) && ([githubManager.password isNotEqualTo:@""])) {
