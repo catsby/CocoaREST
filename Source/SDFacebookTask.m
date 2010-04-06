@@ -251,7 +251,7 @@
 		sprintf(finaldigest + (i * 2), "%02x", digest[i]);
 	
 	// return it as an NSString
-	return [NSString stringWithCString:finaldigest length:32];
+	return [NSString stringWithUTF8String:finaldigest];
 }
 
 @end
