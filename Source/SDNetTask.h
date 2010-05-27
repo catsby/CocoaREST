@@ -19,6 +19,9 @@ typedef enum _SDNetTaskError {
 	SDNetTaskErrorParserFailed,
 	SDNetTaskErrorParserDataIsNil,
 	SDNetTaskErrorServiceDefinedError,
+	SDNetTaskErrorAuthenticationCanceled,
+	SDNetTaskErrorAuthenticationFailed,
+	SDNetTaskErrorNotConnectedToInternet,
 	
 	SDNetTaskErrorMAX // once again, don't touch.
 } SDNetTaskError;
