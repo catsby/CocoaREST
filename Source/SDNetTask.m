@@ -13,6 +13,8 @@
 
 #import "YAJLDecoder.h"
 
+#import <objc/message.h>
+
 @interface SDNetTask (Private)
 
 - (void) _appendToData:(NSMutableData*)data formatWithUTF8:(NSString*)format, ...;
