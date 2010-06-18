@@ -80,7 +80,7 @@ Integrating CocoaREST into your app
 CocoaREST and the iPhone
 ========================
 
-This project doesn't use any classes which are unavailable on the iPhone SDK, excepting NSColor (a UIColor counterpart coming soon!). The `YAJL` C library's source code (under the Source dir) works just fine when compiled against the iPhone SDK. Thus, `CocoaREST` is perfectly suitable for use on the iPhone SDK.
+This project doesn't use any classes which are unavailable on the iPhone SDK, excepting NSColor (a UIColor counterpart possibly coming soon!). The `YAJL` C library's source code (under the Source dir) works just fine when compiled against the iPhone SDK. Thus, `CocoaREST` is perfectly suitable for use on the iPhone SDK.
 
 
 
@@ -103,14 +103,14 @@ Most (if not all) MGTwitterEngine code should work just fine with CocoaREST.
 Other people's Source Code used in this project
 ===============================================
 
-This code requires the aforementioned `NSString` and `NSData` files, which are borrowed directly from MGTwitterEngine. Similarly, this README file and the Source Code license borrowed heavily from their MGTwitterEngine counterparts.
+This code requires the aforementioned `NSString` and `NSData` files, which are borrowed directly from MGTwitterEngine.
 
 The class `SDNetTask` uses JSON parsing (and will support XML in the near future). The JSON library used is [`yajl`](http://lloyd.github.com/yajl/) (written in C), and was written by Lloyd Hilaiel.
 
 
 
-Heartfelt Goodbyes
-==================
+The End
+=======
 
 That's about it. If you have trouble with the code, or want to make a feature request or report a bug (or even contribute some improvements), you can get in touch with me using the info below. I hope you enjoy using CocoaREST!
 
@@ -120,13 +120,3 @@ Sincerely, `Steven Degutis`
 * AIM: `stevendegutis`
 * MSN: `steven.degutis@hotmail.com`
 * Twitter: `sdegutis`
-
-P.S. Special thanks to Matt Gemmell for providing the initial structure of this README and the Source Code License file! Thanks also to Matt for the idea of a twitter engine Cocoa class, and thanks to `@chockenberry` for finding `yajl`
-
-P.P.S. Since this README file was first written, the API has undergone tremendous changes in the past 24 hours. So, if you find any inconsistencies I may have missed, let me know so I can fix them!
-
-
-Mac and iPhone Developer for Hire
-=================================
-
-If you'd like to hire me for your own Mac OS X (Cocoa) or iPhone / iPod Touch development project, take a look at my consulting site at <http://hire.degutis.org>
