@@ -17,12 +17,12 @@
 	if (convertedColor == nil)
 		return nil;
 	
-	float redFloatValue, greenFloatValue, blueFloatValue;
-	[convertedColor getRed:&redFloatValue green:&greenFloatValue blue:&blueFloatValue alpha:NULL];
+	CGFloat redCGFloatValue, greenCGFloatValue, blueCGFloatValue;
+	[convertedColor getRed:&redCGFloatValue green:&greenCGFloatValue blue:&blueCGFloatValue alpha:NULL];
 	
-	int redIntValue = redFloatValue * 255.99999f;
-	int greenIntValue = greenFloatValue * 255.99999f;
-	int blueIntValue = blueFloatValue * 255.99999f;
+	int redIntValue = redCGFloatValue * 255.99999f;
+	int greenIntValue = greenCGFloatValue * 255.99999f;
+	int blueIntValue = blueCGFloatValue * 255.99999f;
 	
 	return [NSString stringWithFormat:@"#%02x%02x%02x", redIntValue, greenIntValue, blueIntValue];
 }
