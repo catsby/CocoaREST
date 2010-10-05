@@ -18,6 +18,9 @@ typedef enum _SDGithubTaskType {
     //  Repositories        http://develop.github.com/p/repo.html
 	SDGithubTaskGetRepos,
 	SDGithubTaskGetRepoNetwork,
+	
+	//	Repository
+	SDGithubTaskGetRepoWatchers,
     
     //  User information    http://develop.github.com/p/users.html
     SDGithubTaskUserSearch,

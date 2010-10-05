@@ -78,6 +78,9 @@
         case SDGithubTaskGetRepoNetwork:
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/show/%@/%@/network", user, repo];
             break;
+        case SDGithubTaskGetRepoWatchers:
+            return [NSString stringWithFormat:@"https://github.com/api/v2/json/repos/show/%@/%@/watchers", user, repo];
+            break;
         case SDGithubTaskUserSearch:
             return [NSString stringWithFormat:@"https://github.com/api/v2/json/user/search/%@", searchTerm];
             break;
